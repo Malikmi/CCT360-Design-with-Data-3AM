@@ -1,0 +1,401 @@
+/* ===== whole page ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #06070c;
+  color: #d9d4c7;
+  font-family: "Instrument Serif", Georgia, serif;
+  user-select: none;
+}
+
+/* warm light at sunrise */
+#glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, #a2547a, #ffb36b);
+  opacity: 0;
+}
+
+.scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.4s, visibility 1.4s;   
+}
+
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* == clock, hint, dots == */
+#clock {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #ff3b2f;
+  z-index: 10;
+}
+
+#hint {
+  position: fixed;
+  bottom: 52px;
+  width: 100%;
+  text-align: center;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #6f7180;
+  z-index: 10;
+  animation: pulse 2.6s infinite;   
+}
+
+@keyframes pulse {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+#dots {
+  position: fixed;
+  bottom: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #2a2c38;
+  transition: background-color 0.8s;
+}
+
+.dot.on {
+  background-color: #ff3b2f;
+}
+
+/* ===== SCENE 0: wake ===== */
+#bigClock {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-weight: 300;
+  font-size: 200px;
+  color: #ff3b2f;
+  text-shadow: 0 0 30px #ff3b2f;
+}
+
+.line {
+  margin-top: 20px;
+  font-size: 30px;
+  font-style: italic;
+  color: #6f7180;
+  text-align: center;
+  padding: 0 24px;
+}
+
+/* the eyelids*/
+.lid {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 46%;
+  background-color: black;
+}
+
+#lidTop {
+  top: 0;
+}
+
+#lidBottom {
+  bottom: 0;
+}
+
+/* ===== SCENE 1: room ===== */
+#room {
+  display: block;
+  background-color: #23222a;
+  cursor: none;
+}
+
+.thought {
+  position: absolute;
+  max-width: 280px;
+  font-size: 28px;
+  font-style: italic;
+  color: #d9d4c7;
+  transition: color 1s;
+}
+
+/* the flashlight*/
+#light {
+  position: absolute;
+  left: -500px;
+  top: -500px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  box-shadow: 0 0 60px 40px #06070c, 0 0 0 3000px #06070c;
+  pointer-events: none;  
+} 
+
+.counter {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #6f7180;
+  z-index: 3;
+}
+
+/* ===== SCENE 2: spiral ===== */
+.center-line {
+  font-size: 40px;
+  text-align: center;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.center-line em {
+  color: #f3b66d;
+}
+
+#calm {
+  margin-top: 24px;
+  width: 260px;
+  max-width: 60%;
+  height: 3px;
+  background-color: #22242f;
+  position: relative;
+  z-index: 2;
+}
+
+#calmFill {
+  width: 0%;
+  height: 100%;
+  background-color: #f3b66d;
+}
+
+/* worry words when you move fast */
+.echo {
+  position: absolute;
+  font-style: italic;
+  color: #ff6b5e;
+  white-space: nowrap;
+  animation: drift 2s forwards;  
+}
+
+@keyframes drift {
+  0%   { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 0; transform: translateY(-80px); }
+}
+
+/* ===== SCENE 3: breathe ===== */
+#lungs {
+  width: 300px;
+  height: 300px;
+  max-width: 70%;
+  border-radius: 50%;
+  background-color: rgba(140, 160, 255, 0.15);
+  border: 1px solid rgba(160, 175, 255, 0.4);
+  transform: scale(0.3);   
+}
+
+#breathText {
+  margin-top: 30px;
+  font-size: 38px;
+  font-style: italic;
+}
+
+#breathCount {
+  margin-top: 10px;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #6f7180;
+}
+
+/* ===== SCENE 4: morning ===== */
+#window {
+  position: relative;
+  width: 440px;
+  max-width: 82%;
+  height: 520px;
+  max-height: 58%;
+  border: 10px solid #1b1c24;
+  border-radius: 200px 200px 6px 6px;
+  overflow: hidden;
+}
+
+#night, #dawn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#night {
+  background: linear-gradient(#05060f, #121633);
+}
+
+#dawn {
+  background: linear-gradient(#5a7fd6, #f19a8e, #ffd08a);
+  opacity: 0;   
+}
+
+#sun {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  left: 50%;
+  margin-left: -45px;
+  top: 110%;   
+  border-radius: 50%;
+  background-color: #fff1c9;
+  box-shadow: 0 0 60px 20px #ffd28c;
+}
+
+#barDown {
+  position: absolute;
+  left: 50%;
+  margin-left: -4px;
+  width: 8px;
+  height: 100%;
+  background-color: #1b1c24;
+}
+
+#barAcross {
+  position: absolute;
+  top: 55%;
+  width: 100%;
+  height: 8px;
+  background-color: #1b1c24;
+}
+
+.curtain {
+  position: absolute;
+  top: 0;
+  width: 52%;
+  height: 100%;
+  background-color: #2b1d2e;
+  border-left: 2px solid #3a2a3d;
+  border-right: 2px solid #3a2a3d;
+}
+
+#curtainL {
+  left: 0;
+}
+
+#curtainR {
+  right: 0;
+}
+
+#ending {
+  margin-top: 24px;
+  text-align: center;
+  padding: 0 24px;
+  opacity: 0;
+  transition: opacity 2s;  
+}
+
+#ending h1 {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 44px;
+}
+
+#ending p {
+  font-size: 24px;
+}
+
+#ending #weather {
+  margin-top: 14px;
+  font-size: 22px;
+  font-style: italic;
+  color: #ffd08a;
+}
+
+#ending #realTime {
+  margin-top: 10px;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 14px;
+  color: #d9d4c7;
+}
+
+#again {
+  margin-top: 18px;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: 1px solid #d9d4c7;
+  background-color: transparent;
+  color: #d9d4c7;
+  cursor: pointer;
+}
+
+#again:hover {
+  background-color: #d9d4c7;
+  color: #06070c;
+}
+
+@media (max-width: 700px) {
+  #bigClock {
+    font-size: 90px;
+  }
+
+  .line {
+    font-size: 22px;
+  }
+
+  .thought {
+    max-width: 170px;
+    font-size: 20px;
+  }
+
+  .center-line {
+    font-size: 26px;
+  }
+
+  #breathText {
+    font-size: 28px;
+  }
+
+  #ending h1 {
+    font-size: 30px;
+  }
+
+  #ending p {
+    font-size: 20px;
+  }
+}

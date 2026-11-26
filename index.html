@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 AM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+  <div id="glow"></div>
+
+  <div id="clock">3:07</div>
+
+  <!-- SCENE 0: wake up -->
+  <div class="scene active" id="wake">
+    <div id="bigClock">3:07</div>
+    <p class="line">you've been staring at the ceiling for an hour.</p>
+    <div class="lid" id="lidTop"></div>
+    <div class="lid" id="lidBottom"></div>
+  </div>
+
+  <!-- SCENE 1: flashlight finds thoughts -->
+  <div class="scene" id="room">
+    <p class="thought" style="left: 8%;  top: 16%;">did i ever reply to that email</p>
+    <p class="thought" style="left: 58%; top: 12%;">what if i picked a different program</p>
+    <p class="thought" style="left: 30%; top: 34%;">my gpa</p>
+    <p class="thought" style="left: 66%; top: 46%;">is my phone even charged</p>
+    <p class="thought" style="left: 6%;  top: 58%;">everyone else seems to have it figured out</p>
+    <p class="thought" style="left: 44%; top: 72%;">i have class at 9</p>
+    <p class="thought" style="left: 14%; top: 84%;">just close your eyes. it's fine.</p>
+    <div id="light"></div>
+    <p class="counter" id="found">0 / 7 thoughts</p>
+  </div>
+
+  <!-- SCENE 2: the spiral -->
+  <div class="scene" id="spiral">
+    <p class="center-line">the faster you move, the louder it gets.<br><em>try being still.</em></p>
+    <div id="calm"><div id="calmFill"></div></div>
+  </div>
+
+  <!-- SCENE 3: breathe -->
+  <div class="scene" id="breathe">
+    <div id="lungs"></div>
+    <p id="breathText">hold to breathe in</p>
+    <p id="breathCount">0 / 3 breaths</p>
+  </div>
+
+  <!-- SCENE 4: morning -->
+  <div class="scene" id="morning">
+    <div id="window">
+      <div id="night"></div>
+      <div id="dawn"></div>
+      <div id="sun"></div>
+      <div id="barDown"></div>
+      <div id="barAcross"></div>
+      <div class="curtain" id="curtainL"></div>
+      <div class="curtain" id="curtainR"></div>
+    </div>
+    <div id="ending">
+      <h1>you didn't fix anything.</h1>
+      <p>you just made it to morning.</p>
+      <p id="weather">checking the sky outside…</p>
+      <p id="realTime"></p>
+      <button id="again">close your eyes again</button>
+    </div>
+  </div>
+
+  <!--progress dots -->
+  <p id="hint">hold anywhere to open your eyes</p>
+  <div id="dots">
+    <span class="dot on"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
